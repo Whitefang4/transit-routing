@@ -19,6 +19,17 @@ def Dij_generator():
         return graph_object
     except:
         return graph_object
+    
+ 
+def extract(Q, w):
+    m=0
+    minimum=w[0]
+    for i in range(len(w)):
+        if w[i]<minimum:
+            minimum=w[i]
+            m=i
+    return m, Q[m]
+
 
 
 def Q1_dijkstra(source: int, destination: int, graph_object) -> int:
@@ -38,7 +49,30 @@ def Q1_dijkstra(source: int, destination: int, graph_object) -> int:
     """
     shortest_path_distance = -1
     try:
+        
         # Enter your code here
+        Q = [source]
+        p = {source:None}
+        w = [0]
+        d = {}
+        for i in graph_object:
+            d[i] = float('inf')
+            Q.append(i)
+            w.append(d[i])
+        d[source] = 0
+        S =[]
+        n = len(Q)
+        while Q:
+            u = extract(Q,w)[1]
+            s.append(u)
+            Q.remove(u)
+            for v in G[u]:
+                if d[v]>= d[u]+G[u][v]:
+                    d[v]=d[u]+G[u][v]
+                    p[v]=u
+                    
+        return d, p
+        
         return shortest_path_distance
     except:
         return shortest_path_distance
