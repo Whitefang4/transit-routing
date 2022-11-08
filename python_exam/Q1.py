@@ -71,7 +71,7 @@ def Q1_dijkstra(source: int, destination: int, graph_object) -> int:
                     d[v]=d[u]+G[u][v]
                     p[v]=u
                     
-        return d, p
+        
         
         return shortest_path_distance
     except:
